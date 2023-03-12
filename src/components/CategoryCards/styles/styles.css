@@ -1,0 +1,18 @@
+.CategoryCards {
+  margin-top: 90px;
+  border: none;
+  width: 350px;
+}
+.CategoryCards-tags > .Tags-item {
+  color: var(--font-color);
+  border: var(--border-color) 1px solid;
+  width: max-content;
+  padding: 5px;
+  border-radius: 5px;
+  text-decoration: none;
+}
+.CategoryCards-tags > .Tags-item:hover {
+  background-color: var(--button-background-color);
+  color: var(--button-font-color);
+  cursor: pointer;
+}

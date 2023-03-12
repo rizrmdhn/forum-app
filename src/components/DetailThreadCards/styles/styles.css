@@ -1,0 +1,98 @@
+.detailThreadCards {
+  margin-top: 90px;
+  width: auto;
+}
+.detailThreadTags {
+  border: var(--border-color) solid 1px;
+  width: max-content;
+  padding: 5px 10px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+.detailThreadTitle {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 25px;
+}
+
+.detailthreadContents {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  font-size: 15px;
+  font-weight: 400;
+  margin-bottom: 10px;
+  text-overflow: ellipsis;
+}
+.detailthreadFooter {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 20px;
+}
+.detailthreadFooter > .UpdatedAt {
+  margin-right: 10px;
+}
+.thread-action-button {
+  display: flex;
+  flex-direction: row;
+  width: 150px;
+  margin-right: 30px;
+}
+.detailThreadComments {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: 55px;
+  margin-left: 20px;
+}
+.addNewCommentContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+.detailThreadCommentsBody {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: 20px;
+  width: 100%;
+}
+.detailThreadCommentsBodyContainerUser {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.detailThreadCommentsBodyContainerUser > img {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin-right: 20px;
+}
+.detailThreadCommentsBodyContainerUser > h5 {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 0px;
+}
+.detailThreadCommentsBodyContainerComment {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  margin-bottom: 10px;
+}
+.detailThreadCommentsBodyContainerComment > .comment-content {
+  margin-left: 20px;
+  font-size: 15px;
+  font-weight: 400;
+  margin-right: 25px;
+  width: 500px;
+}
+.detailThreadCommentsBodyContainerAction {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 10px;
+}

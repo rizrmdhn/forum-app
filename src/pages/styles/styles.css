@@ -1,0 +1,172 @@
+/* Login Page Section */
+.login-page-container,
+.register-page-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--background-color);
+  color: var(--font-color);
+  height: 650px;
+}
+.page-title > h1 {
+  font-size: 50px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+.email-input > input,
+.password-input > input,
+.login-button {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  border: var(--border-color) solid 1px;
+  gap: 5px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  background-color: rgba(217, 217, 217, 0.02);
+  width: 350px;
+  color: var(--font-color);
+  margin: 10px 0px;
+}
+.login-button,
+.register-button {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  border: var(--button-background-color) solid 1px;
+  gap: 5px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  background-color: var(--button-background-color);
+  width: 350px;
+  color: var(--button-font-color);
+  margin: 10px 0px;
+}
+
+/* Register Page Section */
+
+.name-input > input {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  border: var(--border-color) solid 1px;
+  gap: 5px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  background-color: rgba(217, 217, 217, 0.02);
+  width: 350px;
+  color: var(--font-color);
+  margin: 10px 0px;
+}
+
+/* Main Page Section */
+
+.main-page-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: stretch;
+  align-items: flex-start;
+  color: var(--font-color);
+  width: 100%;
+}
+.container-kategori:nth-child(1) {
+  order: 0;
+  flex: 0 1 auto;
+  align-self: stretch;
+}
+
+.container-threads:nth-child(2) {
+  order: 0;
+  flex: 1 1 auto;
+  align-self: stretch;
+}
+
+.container-leaderboards:nth-child(3) {
+  order: 0;
+  flex: 0 1 auto;
+  align-self: stretch;
+}
+.container-kategori {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  border-top-right-radius: 10px;
+  background-color: var(--background-color);
+  color: var(--font-color);
+  width: 350px;
+  height: 893px;
+}
+.container-threads {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  overflow-y: scroll;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+  background-color: var(--background-color);
+  color: var(--font-color);
+  height: 893px;
+  margin: 0px 20px;
+}
+.container-leaderboards {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  border-top-left-radius: 10px;
+  background-color: var(--background-color);
+  color: var(--font-color);
+  width: 350px;
+  height: 893px;
+}
+
+/* Detail Page Section */
+.detail-page-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-content: stretch;
+  align-items: flex-start;
+  background-color: var(--background-color);
+  color: var(--font-color);
+}
+.detail-page-container > .container-leaderboards:nth-child(1) {
+  order: 0;
+  flex: 0 1 auto;
+  align-self: stretch;
+}
+
+.container-detail-threads:nth-child(2) {
+  order: 0;
+  flex: 1 1 auto;
+  align-self: stretch;
+}
+.detail-page-container > .container-leaderboards {
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  border-top-left-radius: 10px;
+  background-color: var(--background-color);
+  color: var(--font-color);
+  width: 350px;
+}
+.container-detail-threads {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+  background-color: var(--background-color);
+  color: var(--font-color);
+  margin: 0px 20px;
+}

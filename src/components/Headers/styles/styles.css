@@ -1,0 +1,85 @@
+.header-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 30px 8px 13px;
+  background-color: #222831;
+  color: #fff;
+}
+.title-container {
+  margin-left: 50px;
+}
+.search-bar-container > .search-bar {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  background-color: rgba(217, 217, 217, 0.02);
+  width: 300px;
+  color: #fff;
+}
+.menu-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+}
+.menu-container:hover {
+  cursor: default;
+}
+.menu-container > .theme {
+  margin-right: 50px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+.menu-container > .user {
+  margin-right: 50px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+.menu-container > .user:hover {
+  cursor: pointer;
+}
+.menu-container > .user > .user-image {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background-color: #d9d9d9;
+}
+.menu-container > .user > .user-name {
+  font-size: 25px;
+  font-weight: 500;
+  color: #fff;
+}
+.title-link {
+  text-decoration: none;
+  color: #fff;
+}
+.title-link:hover {
+  color: #fff;
+}
+.menu-container > .user > .login-btn {
+  padding: 5px 10px;
+  border-radius: 5px;
+  background-color: transparent;
+  color: #fff;
+  text-decoration: none;
+  border: var(--header-border-color) 1px solid;
+}
+.menu-container > .user > .login-btn:hover {
+  background-color: var(--header-background-color);
+  color: var(--header-font-color-hover);
+  cursor: pointer;
+}

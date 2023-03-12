@@ -1,6 +1,6 @@
 .threadCards {
   width: 650px;
-  margin: auto;
+  margin: 10px auto;
 }
 .threadTags {
   border: var(--border-color) solid 1px;

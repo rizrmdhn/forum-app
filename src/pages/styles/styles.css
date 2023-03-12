@@ -106,7 +106,7 @@
 .container-threads {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: flex-start;
   overflow-y: scroll;
   border-top-right-radius: 10px;
@@ -115,6 +115,16 @@
   color: var(--font-color);
   height: 893px;
   margin: 0px 20px;
+}
+.thread-items {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0px;
+  margin-top: 70px;
 }
 .container-leaderboards {
   display: flex;

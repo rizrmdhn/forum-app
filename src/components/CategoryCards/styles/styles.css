@@ -10,6 +10,7 @@
   padding: 5px;
   border-radius: 5px;
   text-decoration: none;
+  margin: 5px;
 }
 .CategoryCards-tags > .Tags-item:hover {
   background-color: var(--button-background-color);

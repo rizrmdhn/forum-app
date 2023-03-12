@@ -29,13 +29,21 @@ function MainPage() {
     };
   });
 
+  const FilterThreadAsCategory = (category) =>
+    threadList.filter((thread) => thread.category === category);
+
   return (
     <div className="main-page-container">
       <div className="container-kategori">
-        <CategoryCards />
+        <CategoryCards
+          threadList={threadList}
+          FilterThreadAsCategory={FilterThreadAsCategory}
+        />
       </div>
       <div className="container-threads">
-        <ThreadCards threads={threadList} authUser={authUser} />
+        <div className="thread-items">
+          <ThreadCards threads={threadList} authUser={authUser} />
+        </div>
       </div>
       <div className="container-leaderboards">
         <LeaderboardCards leaderboards={leaderboards} />

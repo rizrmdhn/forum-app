@@ -16,6 +16,10 @@ function DetailThreadCards({
   upVotesBy,
   downVotesBy,
   totalComments,
+  threadId,
+  userId,
+  isUpVoted,
+  isDownVoted,
 }) {
   return (
     <div className="detailThreadCards card">
@@ -29,8 +33,18 @@ function DetailThreadCards({
       </div>
       <div className="detailthreadFooter card-footer">
         <div className="thread-action-button">
-          <UpVote count={upVotesBy} />
-          <DownVote count={downVotesBy} />
+          <UpVote
+            count={upVotesBy}
+            threadId={threadId}
+            userId={userId}
+            isUpVoted={isUpVoted}
+          />
+          <DownVote
+            count={downVotesBy}
+            threadId={threadId}
+            userId={userId}
+            isDownVoted={isDownVoted}
+          />
           <TotalComment count={totalComments} />
         </div>
         <small className="UpdatedAt text-muted">{postedAt(createdAt)}</small>
@@ -51,7 +65,7 @@ function DetailThreadCards({
           <h6>Comments</h6>
         </div>
         {comment.map((item) => (
-          <div className="detailThreadCommentsBody">
+          <div className="detailThreadCommentsBody" key={item.id}>
             <div className="detailThreadCommentsBodyContainer">
               <div className="detailThreadCommentsBodyContainerUser">
                 <img src={item.owner.avatar} alt={item.owner.name} />
@@ -64,8 +78,18 @@ function DetailThreadCards({
                 </p>
               </div>
               <div className="detailThreadCommentsBodyContainerAction">
-                <UpVote count={item.upVotesBy.length} />
-                <DownVote count={item.downVotesBy.length} />
+                {/* <UpVote
+                  count={upVotesBy}
+                  threadId={threadId}
+                  userId={userId}
+                  isUpVoted={isUpVoted}
+                />
+                <DownVote
+                  count={downVotesBy}
+                  threadId={threadId}
+                  userId={userId}
+                  isDownVoted={isDownVoted}
+                /> */}
               </div>
             </div>
           </div>
@@ -85,6 +109,10 @@ DetailThreadCards.propTypes = {
   upVotesBy: PropTypes.number.isRequired,
   downVotesBy: PropTypes.number.isRequired,
   totalComments: PropTypes.number.isRequired,
+  threadId: PropTypes.string.isRequired,
+  userId: PropTypes.string.isRequired,
+  isUpVoted: PropTypes.array.isRequired,
+  isDownVoted: PropTypes.array.isRequired,
 };
 
 export default DetailThreadCards;

@@ -13,6 +13,7 @@ function DetailThreadPage() {
     threadDetail = [],
     users = [],
     leaderboards = [],
+    authUser,
   } = useSelector((state) => state);
 
   const dispatch = useDispatch();
@@ -55,6 +56,10 @@ function DetailThreadPage() {
           upVotesBy={threadDetail.upVotesBy.length}
           downVotesBy={threadDetail.downVotesBy.length}
           totalComments={threadDetail.comments.length}
+          threadId={threadDetail.id}
+          userId={authUser.id}
+          isUpVoted={threadDetail.upVotesBy}
+          isDownVoted={threadDetail.downVotesBy}
         />
       </div>
     </div>

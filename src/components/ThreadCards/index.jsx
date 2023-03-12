@@ -13,7 +13,7 @@ function ThreadCards({ threads, authUser }) {
       {threads.map((thread) => (
         <div className="threadCards card" key={thread.id}>
           <div className="card-body">
-            <h6 className="threadTags card-tags">{thread.category}</h6>
+            <h6 className="threadTags card-tags">#{thread.category}</h6>
             <h6 className="threadTitle card-title mb-2">
               <Link to={`/threads/${thread.id}`}>{thread.title}</Link>
             </h6>

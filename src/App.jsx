@@ -8,8 +8,9 @@ import LoginPage from "./pages/LoginPage";
 import MainPage from "./pages/MainPage";
 import RegisterPage from "./pages/RegisterPage";
 import { asyncPreloadProcess } from "./states/isPreload/action";
-import { asyncUnsetAuthUser } from "./states/authUser/action";
 import DetailThreadPage from "./pages/DetailThreadPage";
+import Loading from "./components/Loading";
+import NewThreadPage from "./pages/NewThreadPage";
 
 function App() {
   const { authUser = null, isPreload = false } = useSelector((state) => state);
@@ -23,10 +24,6 @@ function App() {
     dispatch(asyncPreloadProcess());
   }, [dispatch]);
 
-  const onSignOut = () => {
-    dispatch(asyncUnsetAuthUser());
-  };
-
   if (isPreload) {
     return null;
   }
@@ -36,11 +33,13 @@ function App() {
       <LocaleContext.Provider value={locale}>
         <ThemeContext.Provider value={theme}>
           <Headers authUser={authUser} />
+          <Loading />
           <Routes>
             <Route path="/*" element={<MainPage />} />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/register" element={<RegisterPage />} />
             <Route path="/threads/:threadId" element={<DetailThreadPage />} />
+            <Route path="/new" element={<NewThreadPage />} />
           </Routes>
         </ThemeContext.Provider>
       </LocaleContext.Provider>

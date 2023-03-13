@@ -1,27 +1,36 @@
 import React from "react";
 import PropTypes from "prop-types";
 import "./styles/styles.css";
-import { useDispatch } from "react-redux";
-import {
-  asyncDownVoteThread,
-  asyncNeutralVoteThread,
-} from "../../states/thread/action";
+import myToast from "../Toast";
 
-function DownVote({ count = 0, threadId, userId, isDownVoted }) {
-  const dispatch = useDispatch();
-
-  const handleDownVote = (threadIds) => {
-    if (isDownVoted.includes(userId)) {
-      dispatch(asyncNeutralVoteThread(threadIds));
-    } else {
-      dispatch(asyncDownVoteThread(threadIds));
-    }
+function DownVote({ count = 0, handlerDownVote, userId, isDownVoted }) {
+  const onHandleSubmitDefault = () => {
+    myToast.fire({
+      icon: "error",
+      title: "Please login to vote",
+    });
   };
+
+  if (!userId) {
+    return (
+      <button
+        title="Down-Vote"
+        className="downVote-btn"
+        onClick={() => onHandleSubmitDefault()}
+      >
+        <p className="counter">
+          <a className="bi bi-hand-thumbs-down"></a>
+          {count}
+        </p>
+      </button>
+    );
+  }
+
   return (
     <button
       title="Down-Vote"
       className="downVote-btn"
-      onClick={() => handleDownVote(threadId)}
+      onClick={handlerDownVote}
     >
       {isDownVoted.includes(userId) ? (
         <p className="counter">
@@ -40,13 +49,21 @@ function DownVote({ count = 0, threadId, userId, isDownVoted }) {
 
 DownVote.propTypes = {
   count: PropTypes.number,
-  threadId: PropTypes.string.isRequired,
-  userId: PropTypes.string.isRequired,
-  isDownVoted: PropTypes.array.isRequired,
+  handlerDownVote: PropTypes.func,
+  userId: PropTypes.string,
+  isDownVoted: PropTypes.array,
 };
 
 DownVote.defaultProps = {
   count: 0,
+  userId: null,
+  isDownVoted: [],
+  handlerDownVote: () => {
+    myToast.fire({
+      icon: "error",
+      title: "Please login to vote",
+    });
+  },
 };
 
 export default DownVote;

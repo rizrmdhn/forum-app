@@ -1,16 +1,28 @@
 import React from "react";
 import "./styles/styles.css";
+import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import UpVote from "../Buttons/UpVote";
 import DownVote from "../Buttons/DownVote";
 import TotalComment from "../Buttons/TotalComment";
 import postedAt from "../../utils";
+import {
+  asyncDownVotecomment,
+  asyncDownVoteThreadDetail,
+  asyncNeutralVoteComment,
+  asyncNeutralVoteThreadDetail,
+  asyncUpVoteComment,
+  asyncUpVoteThreadDetail,
+} from "../../states/threadDetail/action";
+import useInput from "../../hooks/useInput";
 
 function DetailThreadCards({
   category,
   title,
   body,
   createdAt,
+  avatar,
   name,
   comment,
   upVotesBy,
@@ -20,7 +32,48 @@ function DetailThreadCards({
   userId,
   isUpVoted,
   isDownVoted,
+  SendAComment,
 }) {
+  const [comments, setComments] = useInput();
+
+  const dispatch = useDispatch();
+
+  const handleUpVoteThreads = (threadIds, isUpVoteds) => {
+    if (isUpVoteds.includes(userId)) {
+      dispatch(asyncNeutralVoteThreadDetail(threadIds));
+    } else {
+      dispatch(asyncUpVoteThreadDetail(threadIds));
+    }
+  };
+
+  const handleDownVoteThreads = (threadIds, isDownVoteds) => {
+    if (isDownVoteds.includes(userId)) {
+      dispatch(asyncNeutralVoteThreadDetail(threadIds));
+    } else {
+      dispatch(asyncDownVoteThreadDetail(threadIds));
+    }
+  };
+
+  const handleUpVoteComments = (threadIds, commentId, isUpVoteds) => {
+    if (isUpVoteds.includes(userId)) {
+      dispatch(asyncNeutralVoteComment({ threadId: threadIds, commentId }));
+    } else {
+      dispatch(asyncUpVoteComment({ threadId: threadIds, commentId }));
+    }
+  };
+
+  const handleDownVoteComments = (threadIds, commentId, isDownVoteds) => {
+    if (isDownVoteds.includes(userId)) {
+      dispatch(asyncNeutralVoteComment({ threadId: threadIds, commentId }));
+    } else {
+      dispatch(asyncDownVotecomment({ threadId: threadIds, commentId }));
+    }
+  };
+
+  const onHandleSubmit = () => {
+    SendAComment({ content: comments });
+  };
+
   return (
     <div className="detailThreadCards card">
       <div className="card-body">
@@ -35,34 +88,57 @@ function DetailThreadCards({
         <div className="thread-action-button">
           <UpVote
             count={upVotesBy}
-            threadId={threadId}
+            hanlderUpVote={() => handleUpVoteThreads(threadId, isUpVoted)}
             userId={userId}
             isUpVoted={isUpVoted}
           />
           <DownVote
             count={downVotesBy}
-            threadId={threadId}
+            handlerDownVote={() => handleDownVoteThreads(threadId, isDownVoted)}
             userId={userId}
             isDownVoted={isDownVoted}
           />
           <TotalComment count={totalComments} />
         </div>
         <small className="UpdatedAt text-muted">{postedAt(createdAt)}</small>
-        <small className="Creator text-muted">
-          Dibuat oleh <b>{name}</b>
-        </small>
+        <div className="threads-owner">
+          <small className="Creator text-muted">
+            Dibuat oleh
+            <img src={avatar} alt={name} className="userIcon" />
+            <b>{name}</b>
+          </small>
+        </div>
       </div>
       <div className="detailThreadComments">
         <div className="addNewCommentContainer">
           <div className="addNewCommentTitle">
-            <h6>Beri Komentar</h6>
+            <h5>Beri Komentar</h5>
           </div>
           <div className="addNewCommentContainerInput">
-            <input type="text" placeholder="Add a comment" />
+            {userId ? (
+              <>
+                <textarea
+                  type="text"
+                  placeholder="Add a comment"
+                  value={comments}
+                  onChange={(e) => setComments(e)}
+                />
+                <button
+                  className="btn btn-kirim"
+                  onClick={() => onHandleSubmit()}
+                >
+                  Kirim
+                </button>
+              </>
+            ) : (
+              <h6>
+                <Link to="/login">Login</Link> untuk memberi komentar
+              </h6>
+            )}
           </div>
         </div>
         <div className="detailThreadCommentsTitle">
-          <h6>Comments</h6>
+          <h6>Komentar ({totalComments})</h6>
         </div>
         {comment.map((item) => (
           <div className="detailThreadCommentsBody" key={item.id}>
@@ -78,18 +154,22 @@ function DetailThreadCards({
                 </p>
               </div>
               <div className="detailThreadCommentsBodyContainerAction">
-                {/* <UpVote
-                  count={upVotesBy}
-                  threadId={threadId}
+                <UpVote
+                  count={item.upVotesBy.length}
+                  hanlderUpVote={() =>
+                    handleUpVoteComments(threadId, item.id, item.upVotesBy)
+                  }
                   userId={userId}
-                  isUpVoted={isUpVoted}
+                  isUpVoted={item.upVotesBy}
                 />
                 <DownVote
-                  count={downVotesBy}
-                  threadId={threadId}
+                  count={item.downVotesBy.length}
+                  handlerDownVote={() =>
+                    handleDownVoteComments(threadId, item.id, item.downVotesBy)
+                  }
                   userId={userId}
-                  isDownVoted={isDownVoted}
-                /> */}
+                  isDownVoted={item.downVotesBy}
+                />
               </div>
             </div>
           </div>
@@ -104,15 +184,22 @@ DetailThreadCards.propTypes = {
   title: PropTypes.string.isRequired,
   body: PropTypes.string.isRequired,
   createdAt: PropTypes.string.isRequired,
+  avatar: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   comment: PropTypes.array.isRequired,
   upVotesBy: PropTypes.number.isRequired,
   downVotesBy: PropTypes.number.isRequired,
   totalComments: PropTypes.number.isRequired,
   threadId: PropTypes.string.isRequired,
-  userId: PropTypes.string.isRequired,
+  userId: PropTypes.string,
   isUpVoted: PropTypes.array.isRequired,
   isDownVoted: PropTypes.array.isRequired,
+  SendAComment: PropTypes.func,
+};
+
+DetailThreadCards.defaultProps = {
+  userId: null,
+  SendAComment: () => {},
 };
 
 export default DetailThreadCards;

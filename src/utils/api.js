@@ -177,6 +177,10 @@ const api = (() => {
     if (status !== 'success') {
       throw new Error(message);
     }
+
+    const { data: { comment } } = responseJson;
+
+    return comment;
   }
 
   async function upVoteThread(threadId) {

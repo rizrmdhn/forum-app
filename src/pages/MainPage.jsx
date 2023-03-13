@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import AddNewThread from "../components/Buttons/AddNewThread";
 import CategoryCards from "../components/CategoryCards";
 import LeaderboardCards from "../components/LeaderboardCards";
 import ThreadCards from "../components/ThreadCards";
@@ -44,6 +45,7 @@ function MainPage() {
         <div className="thread-items">
           <ThreadCards threads={threadList} authUser={authUser} />
         </div>
+        <AddNewThread />
       </div>
       <div className="container-leaderboards">
         <LeaderboardCards leaderboards={leaderboards} />

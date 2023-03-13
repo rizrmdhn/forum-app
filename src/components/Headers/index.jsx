@@ -1,10 +1,21 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import PropTypes from "prop-types";
 import ThemeButton from "../Buttons/ThemeButton";
 import "./styles/styles.css";
+import { asyncUnsetAuthUser } from "../../states/authUser/action";
 
 function Headers({ authUser }) {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const setLogout = () => {
+    dispatch(asyncUnsetAuthUser());
+
+    navigate("/");
+  };
+
   return (
     <div className="header-container">
       <div className="title-container">
@@ -27,18 +38,32 @@ function Headers({ authUser }) {
         </div>
         <div className="user">
           {authUser !== null ? (
-            <>
-              <img
-                src={
-                  authUser.avatar !== null
-                    ? authUser.avatar
-                    : "https://www.w3schools.com/howto/img_avatar.png"
-                }
-                alt="user"
-                className="user-image"
-              />
-              <div className="user-name">{authUser.name}</div>
-            </>
+            <div className="dropdown">
+              <button
+                className="btn btn-secondary dropdown-toggle"
+                type="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                <img
+                  src={
+                    authUser.avatar !== null
+                      ? authUser.avatar
+                      : "https://www.w3schools.com/howto/img_avatar.png"
+                  }
+                  alt="user"
+                  className="user-image"
+                />
+                <div className="user-name">{authUser.name}</div>
+              </button>
+              <ul className="dropdown-menu">
+                <li>
+                  <button className="dropdown-item" onClick={() => setLogout()}>
+                    Logout
+                  </button>
+                </li>
+              </ul>
+            </div>
           ) : (
             <Link to="/login" className="login-btn">
               Login

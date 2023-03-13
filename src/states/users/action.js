@@ -1,3 +1,4 @@
+import { hideLoading, showLoading } from 'react-redux-loading-bar';
 import myToast from '../../components/Toast';
 import api from '../../utils/api';
 
@@ -13,7 +14,8 @@ function receiveUsersActionCreator(users) {
 }
 
 function asyncRegisterUser({ name, email, password }) {
-    return async () => {
+    return async (dispatch) => {
+        dispatch(showLoading())
         try {
             await api.register({ name, email, password })
         } catch (error) {
@@ -22,6 +24,7 @@ function asyncRegisterUser({ name, email, password }) {
                 title: error.message,
             })
         }
+        dispatch(hideLoading())
     }
 }
 

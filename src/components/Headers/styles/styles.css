@@ -48,18 +48,25 @@
   justify-content: center;
   align-items: center;
   gap: 5px;
+  background-color: transparent;
+  border: none;
 }
-.menu-container > .user:hover {
-  cursor: pointer;
+
+.menu-container > .user > .dropdown > .dropdown-toggle {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
-.menu-container > .user > .user-image {
+.menu-container > .user > .dropdown > .dropdown-toggle > .user-image {
   width: 25px;
   height: 25px;
   border-radius: 50%;
   background-color: #d9d9d9;
+  margin-right: 5px;
 }
-.menu-container > .user > .user-name {
-  font-size: 25px;
+.menu-container > .user > .dropdown > .dropdown-toggle > .user-name {
+  font-size: 20px;
   font-weight: 500;
   color: #fff;
 }

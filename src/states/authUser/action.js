@@ -1,5 +1,6 @@
-import api from "../../utils/api"
-import myToast from "../../components/Toast"
+import { hideLoading, showLoading } from 'react-redux-loading-bar';
+import api from "../../utils/api";
+import myToast from "../../components/Toast";
 
 const ActionType = {
     SET_AUTH_USER: 'SET_AUTH_USER',
@@ -23,10 +24,11 @@ function unsetAuthUserActionCreator() {
 
 function asyncSetAuthUser({ email, password }) {
     return async (dispatch) => {
+        dispatch(showLoading())
         try {
             const token = await api.login({ email, password })
             api.putAccessToken(token)
-            const authUser = await api.getAuthUser()
+            const authUser = await api.getOwnProfile()
 
             dispatch(setAuthUserActionCreator(authUser))
         } catch (error) {
@@ -35,6 +37,7 @@ function asyncSetAuthUser({ email, password }) {
                 title: error.message,
             })
         }
+        dispatch(hideLoading())
     }
 
 }

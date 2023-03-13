@@ -1,10 +1,10 @@
+import { hideLoading, showLoading } from 'react-redux-loading-bar';
 import myToast from '../../components/Toast';
 import api from '../../utils/api';
 
 const ActionType = {
     RECEIVE_THREADS: 'RECEIVE_THREADS',
     CREATE_THREAD: 'CREATE_THREAD',
-    CREATE_COMMENT: 'CREATE_COMMENT',
     UP_VOTE_THREAD: 'UP_VOTE_THREAD',
     DOWN_VOTE_THREAD: 'DOWN_VOTE_THREAD',
     NEUTRAL_VOTE_THREAD: 'NEUTRAL_VOTE_THREAD',
@@ -17,17 +17,10 @@ function receiveThreadsActionCreator(threads) {
     }
 }
 
-function createThreadActionCreator(thread) {
+function createThreadActionCreator(threads) {
     return {
         type: ActionType.CREATE_THREAD,
-        payload: { thread },
-    }
-}
-
-function createCommentActionCreator(comment) {
-    return {
-        type: ActionType.CREATE_COMMENT,
-        payload: { comment },
+        payload: { threads },
     }
 }
 
@@ -54,6 +47,7 @@ function neutralVoteThreadActionCreator({ threadId, userId }) {
 
 function asyncCreateThread({ title, body, category }) {
     return async (dispatch) => {
+        dispatch(showLoading())
         try {
             const threads = await api.createThread({ title, body, category })
             dispatch(createThreadActionCreator(threads))
@@ -63,25 +57,13 @@ function asyncCreateThread({ title, body, category }) {
                 title: error.message,
             })
         }
-    }
-}
-
-function asyncCreateComment({ threadId, content }) {
-    return async (dispatch) => {
-        try {
-            const comment = await api.createComment({ threadId, content })
-            dispatch(createCommentActionCreator(comment))
-        } catch (error) {
-            myToast.fire({
-                icon: 'error',
-                title: error.message,
-            })
-        }
+        dispatch(hideLoading())
     }
 }
 
 function asyncUpVoteThread(threadId) {
     return async (dispatch, getState) => {
+        dispatch(showLoading())
         const { authUser } = getState()
         dispatch(upVoteThreadActionCreator({ threadId, userId: authUser.id }))
 
@@ -94,11 +76,13 @@ function asyncUpVoteThread(threadId) {
             })
             dispatch(upVoteThreadActionCreator({ threadId, userId: authUser.id }))
         }
+        dispatch(hideLoading())
     }
 }
 
 function asyncDownVoteThread(threadId) {
     return async (dispatch, getState) => {
+        dispatch(showLoading())
         const { authUser } = getState()
         dispatch(downVoteThreadActionCreator({ threadId, userId: authUser.id }))
         try {
@@ -110,11 +94,13 @@ function asyncDownVoteThread(threadId) {
             })
             dispatch(downVoteThreadActionCreator({ threadId, userId: authUser.id }))
         }
+        dispatch(hideLoading())
     }
 }
 
 function asyncNeutralVoteThread(threadId) {
     return async (dispatch, getState) => {
+        dispatch(showLoading())
         const { authUser } = getState()
         dispatch(neutralVoteThreadActionCreator({ threadId, userId: authUser.id }))
         try {
@@ -126,6 +112,7 @@ function asyncNeutralVoteThread(threadId) {
             })
             dispatch(neutralVoteThreadActionCreator({ threadId, userId: authUser.id }))
         }
+        dispatch(hideLoading())
     }
 }
 
@@ -133,7 +120,6 @@ export {
     ActionType,
     receiveThreadsActionCreator,
     asyncCreateThread,
-    asyncCreateComment,
     asyncUpVoteThread,
     asyncDownVoteThread,
     asyncNeutralVoteThread,

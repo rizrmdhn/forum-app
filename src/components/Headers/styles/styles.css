@@ -80,13 +80,11 @@
 .menu-container > .user > .login-btn {
   padding: 5px 10px;
   border-radius: 5px;
-  background-color: transparent;
-  color: #fff;
+  background-color: var(--header-background-color);
+  color: var(--header-font-color);
   text-decoration: none;
-  border: var(--header-border-color) 1px solid;
 }
 .menu-container > .user > .login-btn:hover {
-  background-color: var(--header-background-color);
-  color: var(--header-font-color-hover);
+  box-shadow: var(--header-button-box-shadow) 0px 0px 5px;
   cursor: pointer;
 }

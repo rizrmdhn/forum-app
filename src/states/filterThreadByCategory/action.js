@@ -9,7 +9,13 @@ function setFilterThreadCategoryActionCreator(category) {
     }
 }
 
+function setDataFilterThreadCategory(category) {
+    return (dispatch) => {
+        dispatch(setFilterThreadCategoryActionCreator(category))
+    }
+}
+
 export {
     ActionType,
-    setFilterThreadCategoryActionCreator,
+    setDataFilterThreadCategory,
 }

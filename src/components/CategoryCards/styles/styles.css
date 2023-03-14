@@ -1,11 +1,13 @@
 .CategoryCards {
+  background-color: transparent !important;
   margin-top: 90px;
-  border: none;
+  border: none !important;
   width: 350px;
 }
 .CategoryCards-tags > .Tags-item {
-  color: var(--font-color);
-  border: var(--border-color) 1px solid;
+  color: var(--button-font-color);
+  background-color: var(--button-background-color);
+  border: none;
   width: max-content;
   padding: 5px;
   border-radius: 5px;
@@ -13,7 +15,11 @@
   margin: 5px;
 }
 .CategoryCards-tags > .Tags-item:hover {
-  background-color: var(--button-background-color);
+  box-shadow: var(--button-background-color) 0px 0px 10px 0px;
   color: var(--button-font-color);
   cursor: pointer;
+}
+.item-active {
+  background-color: var(--button-background-color-active) !important;
+  color: var(--button-font-color-active) !important;
 }

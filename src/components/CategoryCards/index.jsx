@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import "./styles/styles.css";
 
-function CategoryCards({ threadList, FilterThreadAsCategory }) {
+function CategoryCards({ categories, FilterThreadAsCategory, datas }) {
+  const [isShowAllCategory] = useState(false);
+
   const onHandleFilterThreadAsCategory = (category) => {
-    FilterThreadAsCategory(category);
+    FilterThreadAsCategory(category === datas ? "" : category);
   };
 
   return (
@@ -13,18 +15,26 @@ function CategoryCards({ threadList, FilterThreadAsCategory }) {
       <div className="CategoryCards-body card-body">
         <div className="CategoryCards-body-item">
           <div className="CategoryCards-tags">
-            {threadList.map((thread) => (
-              <button
-                className="Tags-item"
-                key={thread.id}
-                onClick={() => onHandleFilterThreadAsCategory(thread.category)}
-              >
-                <span className="CategoryCards-tags-item">#</span>
-                <span className="CategoryCards-tags-item">
-                  {thread.category}
-                </span>
-              </button>
-            ))}
+            {categories
+              .sort((a, b) => b.threadId.length - a.threadId.length)
+              .slice(0, isShowAllCategory ? categories.length : 5)
+              .map((item) => (
+                <button
+                  id={`kategori-${item.category}`}
+                  className={
+                    datas === item.category
+                      ? "Tags-item item-active"
+                      : "Tags-item"
+                  }
+                  key={item.id}
+                  onClick={() => onHandleFilterThreadAsCategory(item.category)}
+                >
+                  <span className="CategoryCards-tags-item">#</span>
+                  <span className="CategoryCards-tags-item">
+                    {item.category}
+                  </span>
+                </button>
+              ))}
           </div>
         </div>
       </div>
@@ -33,8 +43,9 @@ function CategoryCards({ threadList, FilterThreadAsCategory }) {
 }
 
 CategoryCards.propTypes = {
-  threadList: PropTypes.array.isRequired,
+  categories: PropTypes.array.isRequired,
   FilterThreadAsCategory: PropTypes.func.isRequired,
+  datas: PropTypes.string.isRequired,
 };
 
 export default CategoryCards;

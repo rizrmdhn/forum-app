@@ -1,4 +1,5 @@
 .detailThreadCards {
+  background-color: var(--background-color) !important;
   margin-top: 90px;
   width: 100%;
 }
@@ -89,6 +90,7 @@
   font-size: 15px;
   font-weight: 600;
   cursor: pointer;
+  border: none;
 }
 .addNewCommentContainerInput > button:hover {
   background-color: var(--button-background-color);
@@ -131,6 +133,9 @@
   font-weight: 400;
   margin-right: 25px;
   width: 500px;
+}
+.detailThreadCommentsBodyContainerComment > .commentPosted {
+  color: var(--font-color) !important;
 }
 .detailThreadCommentsBodyContainerAction {
   display: flex;

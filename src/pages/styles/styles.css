@@ -25,7 +25,7 @@
   gap: 5px;
   padding: 5px 10px;
   border-radius: 5px;
-  background-color: rgba(217, 217, 217, 0.02);
+  background-color: var(--background-color);
   width: 350px;
   color: var(--font-color);
   margin: 10px 0px;
@@ -45,6 +45,10 @@
   color: var(--button-font-color);
   margin: 10px 0px;
 }
+.login-button:hover,
+.register-button:hover {
+  box-shadow: var(--button-box-shadow) 0px 0px 10px 0px;
+}
 
 /* Register Page Section */
 
@@ -57,7 +61,7 @@
   gap: 5px;
   padding: 5px 10px;
   border-radius: 5px;
-  background-color: rgba(217, 217, 217, 0.02);
+  background-color: var(--background-color);
   width: 350px;
   color: var(--font-color);
   margin: 10px 0px;

@@ -1,4 +1,5 @@
 .LeaderboardsCard {
+  background-color: var(--background-color) !important;
   margin-top: 90px;
   width: 350px;
   border: none;
@@ -14,6 +15,8 @@
 }
 .LeaderboardsCard-item-list {
   display: flex !important;
+  background-color: var(--background-color) !important;
+  color: var(--font-color) !important;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;

@@ -20,9 +20,11 @@ function useLogin(defaultValue = '') {
 
     const onSubmitHandler = async (event) => {
         event.preventDefault();
-        disptach(asyncSetAuthUser({ email, password }));
-
-        navigate('/');
+        disptach(asyncSetAuthUser({ email, password })).catch((error) => {
+            if (!error) {
+                navigate('/');
+            }
+        });
     };
 
     return [email, onChangeEmail, password, onChangePassword, onSubmitHandler];

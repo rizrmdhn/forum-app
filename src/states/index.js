@@ -8,6 +8,9 @@ import usersReducer from "./users/reducer";
 import leaderboardsReducer from "./leaderboards/reducer";
 import userMenuReducer from "./userMenu/reducer";
 import filterThreadByCategoryReducer from "./filterThreadByCategory/reducer";
+import filterThreadByTitleReducer from "./filterThreadByTitle/reducer";
+import themeReducer from "./theme/reducer";
+import localeReducer from "./locale/reducer";
 
 const store = configureStore({
     reducer: {
@@ -19,6 +22,9 @@ const store = configureStore({
         leaderboards: leaderboardsReducer,
         userMenu: userMenuReducer,
         filterThreadByCategory: filterThreadByCategoryReducer,
+        filterThreadByTitle: filterThreadByTitleReducer,
+        theme: themeReducer,
+        locale: localeReducer,
         loadingBar: loadingBarReducer
     }
 });

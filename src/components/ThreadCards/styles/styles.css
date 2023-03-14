@@ -1,6 +1,7 @@
 .threadCards {
   width: 650px;
   margin: 10px auto;
+  background-color: var(--card-background-color) !important;
 }
 .threadTags {
   border: var(--border-color) solid 1px;
@@ -34,6 +35,7 @@
   margin-top: 20px;
 }
 .threadFooter > .UpdatedAt {
+  color: var(--font-color) !important;
   margin-right: 10px;
 }
 .thread-action-button {
@@ -45,6 +47,9 @@
 .threadFooter > .threads-owner {
   margin-left: 10px;
   margin-right: 5px;
+}
+.threadFooter > .threads-owner > .Creator {
+  color: var(--font-color) !important;
 }
 .threadFooter > .threads-owner > .Creator > .userIcon {
   width: 30px;

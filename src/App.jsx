@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import Headers from "./components/Headers";
@@ -11,14 +11,18 @@ import { asyncPreloadProcess } from "./states/isPreload/action";
 import DetailThreadPage from "./pages/DetailThreadPage";
 import Loading from "./components/Loading";
 import NewThreadPage from "./pages/NewThreadPage";
+import useInput from "./hooks/useInput";
 
 function App() {
-  const { authUser = null, isPreload = false } = useSelector((state) => state);
+  const {
+    authUser = null,
+    isPreload = false,
+    theme = "light",
+    locale = "id",
+  } = useSelector((state) => state);
 
   const dispatch = useDispatch();
-
-  const [locale, setLocale] = useState("en");
-  const [theme, setTheme] = useState("light");
+  const [searchQuery, setSearchQuery] = useInput("");
 
   useEffect(() => {
     dispatch(asyncPreloadProcess());
@@ -32,14 +36,40 @@ function App() {
     <div className="App">
       <LocaleContext.Provider value={locale}>
         <ThemeContext.Provider value={theme}>
-          <Headers authUser={authUser} />
+          <Headers
+            authUser={authUser}
+            searchQuery={searchQuery}
+            setSearchQuery={setSearchQuery}
+          />
           <Loading />
           <Routes>
-            <Route path="/*" element={<MainPage />} />
-            <Route path="/login" element={<LoginPage />} />
-            <Route path="/register" element={<RegisterPage />} />
-            <Route path="/threads/:threadId" element={<DetailThreadPage />} />
-            <Route path="/new" element={<NewThreadPage />} />
+            {authUser !== null ? (
+              <>
+                <Route
+                  path="/*"
+                  element={<MainPage searchQuery={searchQuery} />}
+                />
+                <Route
+                  path="/threads/:threadId"
+                  element={<DetailThreadPage />}
+                />
+                <Route path="/new" element={<NewThreadPage />} />
+              </>
+            ) : (
+              <>
+                <Route
+                  path="/*"
+                  element={<MainPage searchQuery={searchQuery} />}
+                />
+                <Route path="/login" element={<LoginPage />} />
+                <Route path="/register" element={<RegisterPage />} />
+                <Route
+                  path="/threads/:threadId"
+                  element={<DetailThreadPage />}
+                />
+                <Route path="/new" element={<NewThreadPage />} />
+              </>
+            )}
           </Routes>
         </ThemeContext.Provider>
       </LocaleContext.Provider>

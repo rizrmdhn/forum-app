@@ -7,6 +7,7 @@ import store from "./states";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.min";
+import "animate.css";
 import "./styles/styles.css";
 
 ReactDOM.createRoot(document.getElementById("root")).render(

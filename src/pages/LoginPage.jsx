@@ -14,7 +14,7 @@ function LoginPage() {
       </div>
       <div className="email-input">
         <input
-          type="text"
+          type="email"
           placeholder="Email"
           value={email}
           onChange={onChangeEmail}

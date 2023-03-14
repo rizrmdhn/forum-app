@@ -8,6 +8,7 @@ const ActionType = {
     UP_VOTE_THREAD: 'UP_VOTE_THREAD',
     DOWN_VOTE_THREAD: 'DOWN_VOTE_THREAD',
     NEUTRAL_VOTE_THREAD: 'NEUTRAL_VOTE_THREAD',
+
 }
 
 function receiveThreadsActionCreator(threads) {

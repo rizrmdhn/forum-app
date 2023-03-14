@@ -31,6 +31,13 @@ function asyncSetAuthUser({ email, password }) {
             const authUser = await api.getOwnProfile()
 
             dispatch(setAuthUserActionCreator(authUser))
+
+            myToast.fire({
+                icon: 'success',
+                title: 'Login success',
+            })
+
+
         } catch (error) {
             myToast.fire({
                 icon: 'error',

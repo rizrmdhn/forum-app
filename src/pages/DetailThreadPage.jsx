@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import DetailThreadCards from "../components/DetailThreadCards";
 import LeaderboardCards from "../components/LeaderboardCards";
-import myToast from "../components/Toast";
 import { asyncGetLeaderboard } from "../states/leaderboards/action";
 import { asyncGetAllUsers } from "../states/shared/action";
 import {

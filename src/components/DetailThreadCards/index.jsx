@@ -77,7 +77,7 @@ function DetailThreadCards({
   return (
     <div className="detailThreadCards card">
       <div className="card-body">
-        <h6 className="detailThreadTags card-tags">{category}</h6>
+        <h6 className="detailThreadTags card-tags">#{category}</h6>
         <h6 className="detailThreadTitle card-title mb-2">{title}</h6>
         <div
           className="detailthreadContents card-text"

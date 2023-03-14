@@ -1,9 +1,8 @@
-import React, { useContext } from "react";
-import ThemeContext from "../../contexts/ThemeContext";
+import React from "react";
+import PropTypes from "prop-types";
 import "./styles/styles.css";
 
-export default function ThemeButton() {
-  const { theme, toggleTheme } = useContext(ThemeContext);
+function ThemeButton({ theme, toggleTheme }) {
   return (
     <button onClick={toggleTheme} className="btn-theme-toggler">
       {theme === "light" ? (
@@ -14,3 +13,10 @@ export default function ThemeButton() {
     </button>
   );
 }
+
+ThemeButton.propTypes = {
+  theme: PropTypes.string.isRequired,
+  toggleTheme: PropTypes.func.isRequired,
+};
+
+export default ThemeButton;

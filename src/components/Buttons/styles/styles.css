@@ -6,13 +6,14 @@
   background-color: transparent;
   width: 50px;
   height: 25px;
+  color: var(--button-action-color);
 }
 .upVote-btn > p > a,
 .downVote-btn > p > a,
 .TotalComment-btn > p > a {
   margin-right: 10px;
   font-size: 20px;
-  color: black;
+  color: var(--button-action-color);
 }
 .TotalComment-btn:hover {
   cursor: default;

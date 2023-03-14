@@ -5,22 +5,14 @@ import PropTypes from "prop-types";
 import ThemeButton from "../Buttons/ThemeButton";
 import "./styles/styles.css";
 import { asyncUnsetAuthUser } from "../../states/authUser/action";
-import { setLocaleActionCreator } from "../../states/locale/action";
 import { setThemeActionCreator } from "../../states/theme/action";
+import LangButton from "../Buttons/LangButton";
 
 function Headers({ authUser, searchQuery, setSearchQuery }) {
-  const { locale = "id", theme = "light" } = useSelector((state) => state);
+  const { theme = "light" } = useSelector((state) => state);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
-  useEffect(() => {
-    if (localStorage.locale) {
-      dispatch(setLocaleActionCreator(localStorage.locale));
-    } else {
-      localStorage.setItem("locale", "id");
-    }
-  }, [dispatch]);
 
   useEffect(() => {
     const localTheme = localStorage.getItem("theme");
@@ -38,10 +30,6 @@ function Headers({ authUser, searchQuery, setSearchQuery }) {
     localStorage.setItem("theme", theme === "light" ? "dark" : "light");
   };
 
-  const onChangeLanguage = (lang) => {
-    dispatch(setLocaleActionCreator(lang));
-    localStorage.setItem("locale", lang);
-  };
   const setLogout = () => {
     dispatch(asyncUnsetAuthUser());
 
@@ -67,6 +55,9 @@ function Headers({ authUser, searchQuery, setSearchQuery }) {
         />
       </div>
       <div className="menu-container">
+        <div className="language">
+          <LangButton />
+        </div>
         <div className="theme">
           <ThemeButton theme={theme} toggleTheme={() => onChangeTheme()} />
         </div>

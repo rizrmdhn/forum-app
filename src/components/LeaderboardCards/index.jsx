@@ -1,12 +1,15 @@
 import React from "react";
 import PropTypes from "prop-types";
 import "./styles/styles.css";
+import useLocale from "../../hooks/useLocale";
 
 function LeaderboardCards({ leaderboards }) {
+  const { textActiveUserLeaderboard } = useLocale();
+
   return (
     <div className="LeaderboardsCard card">
       <div className="LeaderboardsCard-header card-header">
-        Klasemen Pengguna Aktif
+        {textActiveUserLeaderboard}
       </div>
       <ul className="LeaderboardsCard-list list-group list-group-flush">
         {leaderboards.map((leaderboard) => (

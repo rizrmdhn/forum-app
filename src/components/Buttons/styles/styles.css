@@ -18,7 +18,8 @@
 .TotalComment-btn:hover {
   cursor: default;
 }
-.btn-theme-toggler {
+.btn-theme-toggler,
+.changeLanguage-btn {
   background-color: transparent;
   border: none;
   color: #fff;
@@ -28,7 +29,8 @@
   width: 35px;
   height: 35px;
 }
-.btn-theme-toggler:hover {
+.btn-theme-toggler:hover,
+.changeLanguage-btn:hover {
   background-color: white;
   border: none;
   color: #000;

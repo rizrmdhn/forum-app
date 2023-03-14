@@ -2,10 +2,13 @@ import React from "react";
 import "./styles/styles.css";
 import { Link } from "react-router-dom";
 import useLogin from "../hooks/useLogin";
+import useLocale from "../hooks/useLocale";
 
 function LoginPage() {
   const [email, onChangeEmail, password, onChangePassword, onSubmitHandler] =
     useLogin();
+
+  const { textLogin, textRegister, textNeedAccount } = useLocale();
 
   return (
     <div className="login-page-container">
@@ -34,12 +37,12 @@ function LoginPage() {
           type="submit"
           onClick={onSubmitHandler}
         >
-          Login
+          {textLogin}
         </button>
       </div>
       <div className="message-container">
         <p className="message">
-          Need an account? <Link to="/register">Register</Link>
+          {textNeedAccount} <Link to="/register">{textRegister}</Link>
         </p>
       </div>
     </div>

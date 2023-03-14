@@ -1,4 +1,6 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import useLocale from "../hooks/useLocale";
 import useRegister from "../hooks/useRegister";
 import "./styles/styles.css";
 
@@ -12,6 +14,8 @@ function RegisterPage() {
     onChangePassword,
     onSubmitHandler,
   ] = useRegister();
+
+  const { textRegister, textHaveAccount, textLogin } = useLocale();
 
   return (
     <div className="register-page-container">
@@ -48,8 +52,13 @@ function RegisterPage() {
           type="submit"
           onClick={onSubmitHandler}
         >
-          Register
+          {textRegister}
         </button>
+      </div>
+      <div className="message-container">
+        <p className="message">
+          {textHaveAccount} <Link to="/login">{textLogin}</Link>
+        </p>
       </div>
     </div>
   );

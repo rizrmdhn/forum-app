@@ -2,9 +2,12 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import useInput from "../hooks/useInput";
+import useLocale from "../hooks/useLocale";
 import { asyncCreateThread } from "../states/thread/action";
 
 function NewThreadPage() {
+  const { textCreate, textCreateNewThread } = useLocale();
+
   const [judul, setJudul] = useInput("");
   const [kategori, setKategori] = useInput("");
   const [content, setContent] = useInput("");
@@ -25,12 +28,12 @@ function NewThreadPage() {
       <div className="row">
         <div className="col">
           <div className="page-title">
-            <h5>Buat diskusi baru</h5>
+            <h5>{textCreateNewThread}</h5>
           </div>
           <div className="judul-input">
             <input
               type="text"
-              placeholder="Judul"
+              placeholder="Title"
               value={judul}
               onChange={setJudul}
             />
@@ -38,7 +41,7 @@ function NewThreadPage() {
           <div className="kategori-input">
             <input
               type="text"
-              placeholder="Kategori"
+              placeholder="Category"
               value={kategori}
               onChange={setKategori}
             />
@@ -52,7 +55,7 @@ function NewThreadPage() {
               type="submit"
               onClick={(event) => onSubmitHandler(event)}
             >
-              Buat
+              {textCreate}
             </button>
           </div>
         </div>

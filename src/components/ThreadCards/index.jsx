@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import PropTypes from "prop-types";
 import "./styles/styles.css";
 import UpVote from "../Buttons/UpVote";
@@ -12,8 +12,13 @@ import {
   asyncNeutralVoteThread,
   asyncUpVoteThread,
 } from "../../states/thread/action";
+import useLocale from "../../hooks/useLocale";
 
 function ThreadCards({ threads, authUser }) {
+  const { locale } = useSelector((state) => state);
+
+  const { textCreatedBy } = useLocale();
+
   const dispatch = useDispatch();
 
   const handleUpVote = (threadId, isUpVoted) => {
@@ -60,11 +65,11 @@ function ThreadCards({ threads, authUser }) {
                 <TotalComment count={thread.totalComments} />
               </div>
               <small className="UpdatedAt text-muted">
-                {postedAt(thread.createdAt)}
+                {postedAt({ date: thread.createdAt, locale })}
               </small>
               <div className="threads-owner">
                 <small className="Creator text-muted">
-                  Dibuat oleh
+                  {textCreatedBy}
                   <img
                     src={thread.creator.avatar}
                     alt={thread.creator.name}
@@ -113,11 +118,11 @@ function ThreadCards({ threads, authUser }) {
               <TotalComment count={thread.totalComments} />
             </div>
             <small className="UpdatedAt text-muted">
-              {postedAt(thread.createdAt)}
+              {postedAt({ date: thread.createdAt, locale })}
             </small>
             <div className="threads-owner">
               <small className="Creator text-muted">
-                Dibuat oleh
+                {textCreatedBy}
                 <img
                   src={thread.creator.avatar}
                   alt={thread.creator.name}

@@ -1,6 +1,6 @@
 import React from "react";
 import "./styles/styles.css";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import UpVote from "../Buttons/UpVote";
@@ -16,6 +16,7 @@ import {
   asyncUpVoteThreadDetail,
 } from "../../states/threadDetail/action";
 import useInput from "../../hooks/useInput";
+import useLocale from "../../hooks/useLocale";
 
 function DetailThreadCards({
   category,
@@ -34,6 +35,16 @@ function DetailThreadCards({
   isDownVoted,
   SendAComment,
 }) {
+  const { locale } = useSelector((state) => state);
+
+  const {
+    textLogin,
+    textCreatedBy,
+    textForComment,
+    textAddComment,
+    textComment,
+    textSend,
+  } = useLocale();
   const [comments, setComments] = useInput();
 
   const dispatch = useDispatch();
@@ -100,10 +111,12 @@ function DetailThreadCards({
           />
           <TotalComment count={totalComments} />
         </div>
-        <small className="UpdatedAt text-muted">{postedAt(createdAt)}</small>
+        <small className="UpdatedAt text-muted">
+          {postedAt({ date: createdAt, locale })}
+        </small>
         <div className="threads-owner">
           <small className="Creator text-muted">
-            Dibuat oleh
+            {textCreatedBy}
             <img src={avatar} alt={name} className="userIcon" />
             <b>{name}</b>
           </small>
@@ -112,7 +125,7 @@ function DetailThreadCards({
       <div className="detailThreadComments">
         <div className="addNewCommentContainer">
           <div className="addNewCommentTitle">
-            <h5>Beri Komentar</h5>
+            <h5>{textAddComment}</h5>
           </div>
           <div className="addNewCommentContainerInput">
             {userId ? (
@@ -127,18 +140,20 @@ function DetailThreadCards({
                   className="btn btn-kirim"
                   onClick={() => onHandleSubmit()}
                 >
-                  Kirim
+                  {textSend}
                 </button>
               </>
             ) : (
               <h6>
-                <Link to="/login">Login</Link> untuk memberi komentar
+                <Link to="/login">{textLogin}</Link> {textForComment}
               </h6>
             )}
           </div>
         </div>
         <div className="detailThreadCommentsTitle">
-          <h6>Komentar ({totalComments})</h6>
+          <h6>
+            {textComment} ({totalComments})
+          </h6>
         </div>
         {comment.map((item) => (
           <div className="detailThreadCommentsBody" key={item.id}>
@@ -150,7 +165,7 @@ function DetailThreadCards({
               <div className="detailThreadCommentsBodyContainerComment">
                 <p className="comment-content">{item.content}</p>
                 <p className="commentPosted text-muted">
-                  <small>{postedAt(item.createdAt)}</small>
+                  <small>{postedAt({ date: item.createdAt, locale })}</small>
                 </p>
               </div>
               <div className="detailThreadCommentsBodyContainerAction">

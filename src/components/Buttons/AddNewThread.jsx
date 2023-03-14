@@ -11,7 +11,7 @@ function AddNewThread() {
   };
   return (
     <button
-      title="addNewThread-Vote"
+      title="Add New Thread"
       className="addNewThread-btn bi bi-plus-circle-fill"
       onClick={() => AddNewThreadHandler()}
     ></button>

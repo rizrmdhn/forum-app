@@ -1,10 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import "./styles/styles.css";
 
 function CategoryCards({ categories, FilterThreadAsCategory, datas }) {
-  const [isShowAllCategory] = useState(false);
-
   const onHandleFilterThreadAsCategory = (category) => {
     FilterThreadAsCategory(category === datas ? "" : category);
   };
@@ -17,7 +15,6 @@ function CategoryCards({ categories, FilterThreadAsCategory, datas }) {
           <div className="CategoryCards-tags">
             {categories
               .sort((a, b) => b.threadId.length - a.threadId.length)
-              .slice(0, isShowAllCategory ? categories.length : 5)
               .map((item) => (
                 <button
                   id={`kategori-${item.category}`}

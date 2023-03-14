@@ -59,4 +59,5 @@ body {
 .App {
   overflow: hidden;
   background-color: #222831 !important;
+  height: 100vh;
 }

@@ -12,14 +12,10 @@ function NewThreadPage() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const onSubmitHandler = (event) => {
+  const onSubmitHandler = () => {
     dispatch(
       asyncCreateThread({ title: judul, body: content, category: kategori })
     );
-
-    setJudul("");
-    setKategori("");
-    setContent("");
 
     navigate("/");
   };

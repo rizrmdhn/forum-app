@@ -21,6 +21,8 @@
   --button-font-color: #fff;
   --button-font-color-active: #000;
   --button-box-shadow: #000;
+
+  --transition: all 0.3s ease-in-out;
 }
 [data-theme="dark"] {
   --header-background-color: #eee;

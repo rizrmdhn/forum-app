@@ -8,6 +8,7 @@
   background-color: var(--background-color);
   color: var(--font-color);
   height: 650px;
+  transition: var(--transition);
 }
 .page-title > h1 {
   font-size: 50px;
@@ -106,6 +107,7 @@
   color: var(--font-color);
   width: 350px;
   height: 893px;
+  transition: var(--transition);
 }
 .container-threads {
   display: flex;
@@ -119,6 +121,7 @@
   color: var(--font-color);
   height: 893px;
   margin: 0px 20px;
+  transition: var(--transition);
 }
 .thread-items {
   display: flex;
@@ -140,6 +143,7 @@
   color: var(--font-color);
   width: 350px;
   height: 893px;
+  transition: var(--transition);
 }
 
 /* Detail Page Section */
@@ -152,6 +156,7 @@
   align-items: flex-start;
   background-color: var(--background-color);
   color: var(--font-color);
+  transition: var(--transition);
 }
 .detail-page-container > .container-leaderboards:nth-child(1) {
   order: 0;

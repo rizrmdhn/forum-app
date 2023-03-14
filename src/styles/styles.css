@@ -16,10 +16,10 @@
   --border-hover-color: #eee;
   --border-shadow: #eee;
   --button-background-color: #000;
-  --button-background-color-active: #000;
+  --button-background-color-active: #fff;
   --button-action-color: #000;
-  --button-font-color: #000;
-  --button-font-color-active: #fff;
+  --button-font-color: #fff;
+  --button-font-color-active: #000;
   --button-box-shadow: #000;
 }
 [data-theme="dark"] {

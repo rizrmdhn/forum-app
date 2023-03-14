@@ -23,7 +23,14 @@ function Headers({ authUser, searchQuery, setSearchQuery }) {
   }, [dispatch]);
 
   useEffect(() => {
-    document.documentElement.setAttribute("data-theme", theme);
+    const localTheme = localStorage.getItem("theme");
+    if (localTheme) {
+      dispatch(setThemeActionCreator(localTheme));
+      document.documentElement.setAttribute("data-theme", theme);
+    } else {
+      localStorage.setItem("theme", "light");
+      document.documentElement.setAttribute("data-theme", "light");
+    }
   }, [theme]);
 
   const onChangeTheme = () => {

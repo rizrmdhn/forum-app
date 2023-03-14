@@ -22,4 +22,5 @@
 .item-active {
   background-color: var(--button-background-color-active) !important;
   color: var(--button-font-color-active) !important;
+  box-shadow: var(--button-font-color-active) 0px 0px 10px 0px !important;
 }

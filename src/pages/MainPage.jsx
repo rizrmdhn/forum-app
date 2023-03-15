@@ -52,9 +52,9 @@ function MainPage({ searchQuery }) {
     if (thread.category) {
       thread.category.split(" ").forEach((category) => {
         const categoriesIndex = categories.findIndex(
-          (item) => item === category
+          (item) => item.category === category
         );
-        if (categoriesIndex < 0) {
+        if (categoriesIndex === -1) {
           categories.push({
             id: categories.length + 1,
             category,

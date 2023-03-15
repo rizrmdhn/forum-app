@@ -163,7 +163,10 @@ function DetailThreadCards({
                 <h5>{item.owner.name}</h5>
               </div>
               <div className="detailThreadCommentsBodyContainerComment">
-                <p className="comment-content">{item.content}</p>
+                <p
+                  className="comment-content"
+                  dangerouslySetInnerHTML={{ __html: item.content }}
+                ></p>
                 <p className="commentPosted text-muted">
                   <small>{postedAt({ date: item.createdAt, locale })}</small>
                 </p>

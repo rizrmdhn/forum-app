@@ -57,7 +57,7 @@ body {
   color: var(--font-color) !important;
 }
 .App {
-  overflow: hidden;
+  overflow-y: scroll;
   background-color: #222831 !important;
   height: 100vh;
 }

@@ -64,20 +64,8 @@
   box-shadow: rgba(217, 217, 217, 0.02) 0px 0px 10px !important;
 }
 .menu-container > .user > .dropdown > .dropdown-menu {
-  background-color: rgba(217, 217, 217, 0.5) !important;
+  background-color: rgba(217, 217, 217) !important;
   border: none;
-}
-.menu-container > .user > .dropdown > .dropdown-menu > li > .dropdown-item {
-  color: #fff !important;
-}
-.menu-container
-  > .user
-  > .dropdown
-  > .dropdown-menu
-  > li
-  > .dropdown-item:hover {
-  background-color: rgba(217, 217, 217, 0.2) !important;
-  box-shadow: rgba(217, 217, 217, 0.02) 0px 0px 10px !important;
 }
 .menu-container > .user > .dropdown > .dropdown-toggle > .user-image {
   width: 25px;
